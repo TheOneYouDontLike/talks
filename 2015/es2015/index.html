@@ -71,11 +71,12 @@
                     ![happydev](images/happydev.png)
                 </section>
 
-                <section data-markdown>##let</section>
-
                 <section>
-                    <p>es5</p>
-                    <pre><code data-trim contenteditable>
+                    <section data-markdown>##let</section>
+
+                    <section>
+                        <p>es5</p>
+                        <pre><code data-trim contenteditable>
 function doingStuff() {
     if (true) {
         var someGuy = 'jeff'
@@ -84,14 +85,14 @@ function doingStuff() {
     someGuy = 'random guy';
     console.log(someGuy); // prints random guy
 }
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section data-markdown>![nomodules](images/blockscope.jpg)</section>
+                    <section data-markdown>![nomodules](images/blockscope.jpg)</section>
 
-                <section>
-                    <p>es2015</p>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <p>es2015</p>
+                        <pre><code data-trim contenteditable>
 function doingStuff() {
     if (true) {
         let someGuy = 'jeff'
@@ -99,114 +100,126 @@ function doingStuff() {
 
     someGuy = 'random guy'; // undefined
 }
-                    </code></pre>
+                        </code></pre>
+                    </section>
                 </section>
 
-                <section data-markdown>##const</section>
-
                 <section>
-                    <p>es2015</p>
-                    <pre><code data-trim contenteditable>
+                    <section data-markdown>##const</section>
+
+                    <section>
+                        <p>es2015</p>
+                        <pre><code data-trim contenteditable>
 function doingStuff() {
     const someGuy = 'jeff'
 
     someGuy = 'random guy'; // error
 }
-                    </code></pre>
+                        </code></pre>
+                    </section>
                 </section>
 
-                <section data-markdown>##desctructuring</section>
-
                 <section>
-                    <pre><code data-trim contenteditable>
+                    <section data-markdown>##desctructuring</section>
+
+                    <section>
+                        <pre><code data-trim contenteditable>
 let url = "http://www.meetup.com/meet-js-Katowice/";
 
 let parsedURL = /^(\w+)\:\/\/([^\/]+)\/(.*)$/.exec(url);
 let [, protocol, fullhost, fullpath] = parsedURL;
 
 console.log(fullpath); // prints "meet-js-Katowice/"
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <pre><code data-trim contenteditable>
 function constructor (specObject) {
     let {firstMember, secondMember} = specObject;
 }
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <pre><code data-trim contenteditable>
 function ajax ({url, success, error}) {
     // do stuff
 }
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <pre><code data-trim contenteditable>
 function ajax ({url: uniformResourceLocator, success, error}) {
     // do stuff
 }
-                    </code></pre>
+                        </code></pre>
+                    </section>
                 </section>
 
-                <section data-markdown>##default parameters</section>
-
                 <section>
-                    <pre><code data-trim contenteditable>
+                    <section data-markdown>##default parameters</section>
+
+                    <section>
+                        <pre><code data-trim contenteditable>
 function ajax ({url, success, error} = {}) {
     // do stuff
 }
-                    </code></pre>
+                        </code></pre>
+                    </section>
                 </section>
 
-                <section data-markdown>##rest parameter</section>
-
                 <section>
-                    <pre><code data-trim contenteditable>
+                    <section data-markdown>##rest parameter</section>
+
+                    <section>
+                        <pre><code data-trim contenteditable>
 function someWithRest(...argum) {
   console.log(argum);
 }
 
 someWithRest(1, 2, 3) // prints [1, 2, 3]
-                    </code></pre>
+                        </code></pre>
+                    </section>
                 </section>
 
-                <section data-markdown>##arrow functions</section>
-
                 <section>
-                    <p>es5</p>
-                    <pre><code data-trim contenteditable>
+                    <section data-markdown>##arrow functions</section>
+
+                    <section>
+                        <p>es5</p>
+                        <pre><code data-trim contenteditable>
 var odds = evens.map(function (n) {
     return n + 1;
 });
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <p>es2015</p>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <p>es2015</p>
+                        <pre><code data-trim contenteditable>
 let odds = evens.map(v => v + 1);
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <p>es2015</p>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <p>es2015</p>
+                        <pre><code data-trim contenteditable>
 let concatenated = complicatedObjects
     .map(({ id, name, address }) => (id + name + address));
-                    </code></pre>
+                        </code></pre>
+                    </section>
+
+                    <section data-markdown>don't work with `call` and `apply`</section>
                 </section>
 
-                <section data-markdown>don't work with `call` and `apply`</section>
-
-                <section data-markdown>##templating</section>
-
                 <section>
-                    <p>es5</p>
-                    <pre><code data-trim contenteditable>
+                    <section data-markdown>##templating</section>
+
+                    <section>
+                        <p>es5</p>
+                        <pre><code data-trim contenteditable>
 myApp.directive('myDir', function () {
     return {
         restrict: 'E',
@@ -216,39 +229,41 @@ myApp.directive('myDir', function () {
             '</div>'].join(''),
     };
 });
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <p>es2015</p>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <p>es2015</p>
+                        <pre><code data-trim contenteditable>
 `In ES5 this is
  not legal.`
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <p>es2015</p>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <p>es2015</p>
+                        <pre><code data-trim contenteditable>
 let name = "Jeff", time = "today";
 `Hello ${name}, how are you ${time}?`
 
 console.log(String.raw`In ES5 "\n" is a line-feed.`)
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <p>es2015</p>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <p>es2015</p>
+                        <pre><code data-trim contenteditable>
 String.raw`In ES5 "\n" is a line-feed.`
-                    </code></pre>
+                        </code></pre>
+                    </section>
                 </section>
 
-                <section data-markdown>##improved object literal</section>
-
                 <section>
-                    <p>es5</p>
-                    <pre><code data-trim contenteditable>
+                    <section data-markdown>##improved object literal</section>
+
+                    <section>
+                        <p>es5</p>
+                        <pre><code data-trim contenteditable>
 var ChatRoom = React.createClass({
     // ...
     propTypes: {
@@ -266,12 +281,12 @@ var ChatRoom = React.createClass({
 
     }
 });
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <p>es2015</p>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <p>es2015</p>
+                        <pre><code data-trim contenteditable>
 let ChatRoom = React.createClass({
     // ...
     propTypes: {
@@ -289,12 +304,12 @@ let ChatRoom = React.createClass({
         // ..
     }
 });
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <p>es5</p>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <p>es5</p>
+                        <pre><code data-trim contenteditable>
 function add () {}
 
 function subtract () {}
@@ -309,12 +324,12 @@ module.exports = {
     multiply: multiply,
     divide: divide
 };
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <p>es2015</p>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <p>es2015</p>
+                        <pre><code data-trim contenteditable>
 function add () {}
 
 function subtract () {}
@@ -324,80 +339,84 @@ function multiply () {}
 function divide () {}
 
 module.exports = { add, subtract, multiply, divide };
-                    </code></pre>
+                        </code></pre>
+                    </section>
                 </section>
 
-                <section data-markdown>##modules</section>
-
-                <section data-markdown>![nomodules](images/fry.png)</section>
-
-                <section data-markdown>![options](images/options.png)</section>
-
                 <section>
-                    <pre><code data-trim contenteditable>
+                    <section data-markdown>##modules</section>
+
+                    <section data-markdown>![nomodules](images/fry.png)</section>
+
+                    <section data-markdown>![options](images/options.png)</section>
+
+                    <section>
+                        <pre><code data-trim contenteditable>
 var _ = require('lodash');
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <pre><code data-trim contenteditable>
 import _ from 'lodash';
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <pre><code data-trim contenteditable>
 import { map, filter } from 'lodash';
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <pre><code data-trim contenteditable>
 import { map as lodashMap, filter as lodashFilter } from 'lodash';
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <pre><code data-trim contenteditable>
 export function sum(x, y) {
   return x + y;
 }
 
 export const pi = 3.141593;
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <pre><code data-trim contenteditable>
 import * as math from './math';
 
 math.sum(math.pi, 5);
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <pre><code data-trim contenteditable>
 export default let Chat = React.createClass(...);
-                    </code></pre>
+                        </code></pre>
+                    </section>
+
+                    <section data-markdown>compile time errors</section>
+
+                    <section data-markdown>asynchronous</section>
+
+                    <section data-markdown>http://www.2ality.com/2014/09/es6-modules-final.html</section>
                 </section>
-
-                <section data-markdown>compile time errors</section>
-
-                <section data-markdown>asynchronous</section>
-
-                <section data-markdown>http://www.2ality.com/2014/09/es6-modules-final.html</section>
-
-                <section data-markdown>
-                    ##promises
-                    ![ipromise](images/ipromise.jpg)
-                </section>
-
-                <section data-markdown>![nomodules](images/fry.png)</section>
-
-                <section data-markdown>![options](images/options.png)</section>
 
                 <section>
-                    <pre><code data-trim contenteditable>
+                    <section data-markdown>
+                        ##promises
+                        ![ipromise](images/ipromise.jpg)
+                    </section>
+
+                    <section data-markdown>![nomodules](images/fry.png)</section>
+
+                    <section data-markdown>![options](images/options.png)</section>
+
+                    <section>
+                        <pre><code data-trim contenteditable>
 let promise = new Promise(function(resolve, reject) {
   // do a thing, possibly async, then…
 
@@ -408,60 +427,63 @@ let promise = new Promise(function(resolve, reject) {
     reject(Error("It broke"));
   }
 });
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <pre><code data-trim contenteditable>
 promise.then(function(result) {
   console.log(result); // "Stuff worked!"
 }, function(err) {
   console.log(err); // Error: "It broke"
 });
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <pre><code data-trim contenteditable>
 get('story.json').then(function(response) {
   return JSON.parse(response);
 }).then(function(response) {
   console.log("Yey JSON!", response);
 });
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <pre><code data-trim contenteditable>
 get('story.json').then(JSON.parse).then(function(response) {
   console.log("Yey JSON!", response);
 });
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <pre><code data-trim contenteditable>
 Promise.all(arrayOfPromises).then(function(arrayOfResults) {
   //...
 });
-                    </code></pre>
+                        </code></pre>
+                    </section>
                 </section>
-                <section data-markdown>##generators</section>
-
-                <section data-markdown>start/stop</section>
 
                 <section>
-                    <pre><code data-trim contenteditable>
+                    <section data-markdown>##generators</section>
+
+                    <section data-markdown>start/stop</section>
+
+                    <section>
+                        <pre><code data-trim contenteditable>
 function* idMaker(){
   var index = 0;
   while(index < 3)
     yield index++;
 }
-                    </code></pre>
-                </section>
+                        </code></pre>
+                    </section>
 
-                <section>
-                    <pre><code data-trim contenteditable>
+                    <section>
+                        <pre><code data-trim contenteditable>
 function* idMaker(){
   var index = 0;
   while(index < 3)
@@ -474,15 +496,17 @@ console.log(gen.next().value); // 0
 console.log(gen.next().value); // 1
 console.log(gen.next().value); // 2
 console.log(gen.next().value); // undefined
-                    </code></pre>
+                        </code></pre>
+                    </section>
+
+                    <section data-markdown>#ADD PROMISES EXAMPLE!!!</section>
                 </section>
 
-                <section data-markdown>#ADD PROMISES EXAMPLE!!!</section>
-
-                <section data-markdown>##classes</section>
-
                 <section>
-                    <pre><code data-trim contenteditable>
+                    <section data-markdown>##classes</section>
+
+                    <section>
+                        <pre><code data-trim contenteditable>
 class Cat {
   constructor(name) {
     this.name = name;
@@ -499,39 +523,41 @@ class Lion extends Cat {
     console.log(this.name + ' roars.');
   }
 }
-                    </code></pre>
+                        </code></pre>
+                    </section>
                 </section>
 
-                <section data-markdown>#tools</section>
-
-                <section data-markdown>![nomodules](images/fry.png)</section>
-
-                <section data-markdown>![options](images/options.png)</section>
-
-                <section data-markdown>##babel</section>
-                <section data-markdown>`npm install babel -g`</section>
-                <section data-markdown>`babel -d client-dist client/*.js`</section>
-                <section data-markdown>source maps</section>
-                <section data-markdown>babel-node</section>
-
-                <section data-markdown>##traceur</section>
-
-                <section data-markdown>
-                    babel > traceur
-
-                    - more readable code
-                    - jsx support
-                    - better community support
-                </section>
-
-                <section data-markdown>##client side module system</section>
-                <section data-markdown>browserify</section>
-
-                <section data-markdown>webpack</section>
-                <section data-markdown>`webpack main.js bundle.js`</section>
                 <section>
-                    <p>basic config</p>
-                    <pre><code data-trim contenteditable>
+                    <section data-markdown>#tools</section>
+
+                    <section data-markdown>![nomodules](images/fry.png)</section>
+
+                    <section data-markdown>![options](images/options.png)</section>
+
+                    <section data-markdown>##babel</section>
+                    <section data-markdown>`npm install babel -g`</section>
+                    <section data-markdown>`babel -d client-dist client/*.js`</section>
+                    <section data-markdown>source maps</section>
+                    <section data-markdown>babel-node</section>
+
+                    <section data-markdown>##traceur</section>
+
+                    <section data-markdown>
+                        babel > traceur
+
+                        - more readable code
+                        - jsx support
+                        - better community support
+                    </section>
+
+                    <section data-markdown>##client side module system</section>
+                    <section data-markdown>browserify</section>
+
+                    <section data-markdown>webpack</section>
+                    <section data-markdown>`webpack main.js bundle.js`</section>
+                    <section>
+                        <p>basic config</p>
+                        <pre><code data-trim contenteditable>
 // webpack.config.js
 module.exports = {
   entry: './main.js',
@@ -545,21 +571,21 @@ module.exports = {
     ]
   }
 };
-                    </code></pre>
-                </section>
-                <section>
-                    <p>images and css</p>
-                    <pre><code data-trim contenteditable>
+                        </code></pre>
+                    </section>
+                    <section>
+                        <p>images and css</p>
+                        <pre><code data-trim contenteditable>
 require('./bootstrap.css');
 require('./myapp.less');
 
 var img = document.createElement('img');
 img.src = require('./glyph.png');
-                    </code></pre>
-                </section>
-                <section>
-                    <p>images and css</p>
-                    <pre><code data-trim contenteditable>
+                        </code></pre>
+                    </section>
+                    <section>
+                        <p>images and css</p>
+                        <pre><code data-trim contenteditable>
 // webpack.config.js
 module.exports = {
   // ...
@@ -571,11 +597,11 @@ module.exports = {
     ]
   }
 };
-                    </code></pre>
-                </section>
-                <section>
-                    <p>async loading</p>
-                    <pre><code data-trim contenteditable>
+                        </code></pre>
+                    </section>
+                    <section>
+                        <p>async loading</p>
+                        <pre><code data-trim contenteditable>
 if (window.location.pathname === '/feed') {
   showLoadingState();
   require.ensure([], function() { // this syntax is weird but it works
@@ -589,25 +615,28 @@ if (window.location.pathname === '/feed') {
     require('./profile').show();
   });
 }
-                    </code></pre>
+                        </code></pre>
+                    </section>
+
+                    <style>img[alt=eslint] { height: auto }</style>
+                    <section data-markdown>
+                        ##eslint
+                        ![eslint](images/eslint.png)
+                    </section>
+                    <section data-markdown>![reacteslint](images/reacteslint.png)</section>
                 </section>
 
-                <style>img[alt=eslint] { height: auto }</style>
-                <section data-markdown>
-                    ##eslint
-                    ![eslint](images/eslint.png)
-                </section>
-                <section data-markdown>![reacteslint](images/reacteslint.png)</section>
+                <section>
+                    <section data-markdown>#summary</section>
+                    <section data-markdown>es2015 is cool</section>
+                    <section data-markdown>community supports it</section>
+                    <section data-markdown>hype</section>
+                    <section data-markdown>start using es2015 right now</section>
+                    <section data-markdown>
+                        @kjendrzyca
 
-                <section data-markdown>#summary</section>
-                <section data-markdown>es2015 is cool</section>
-                <section data-markdown>community supports it</section>
-                <section data-markdown>hype</section>
-                <section data-markdown>start using es2015 right now</section>
-                <section data-markdown>
-                    @kjendrzyca
-
-                    aimforsimplicity.com
+                        aimforsimplicity.com
+                    </section>
                 </section>
 			</div>
 		</div>
