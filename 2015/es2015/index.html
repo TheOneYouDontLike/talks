@@ -124,7 +124,7 @@ let url = "http://www.meetup.com/meet-js-Katowice/";
 let parsedURL = /^(\w+)\:\/\/([^\/]+)\/(.*)$/.exec(url);
 let [, protocol, fullhost, fullpath] = parsedURL;
 
-console.log(fullpath); // prints "https:"
+console.log(fullpath); // prints "meet-js-Katowice/"
                     </code></pre>
                 </section>
 
@@ -369,9 +369,19 @@ export const pi = 3.141593;
 
                 <section>
                     <pre><code data-trim contenteditable>
+import * as math from './math';
+
+math.sum(math.pi, 5);
+                    </code></pre>
+                </section>
+
+                <section>
+                    <pre><code data-trim contenteditable>
 export default let Chat = React.createClass(...);
                     </code></pre>
                 </section>
+
+                <section data-markdown>compile time errors</section>
 
                 <section data-markdown>asynchronous</section>
 
@@ -386,11 +396,219 @@ export default let Chat = React.createClass(...);
 
                 <section data-markdown>![options](images/options.png)</section>
 
-                <section data-markdown></section>
-                <section data-markdown></section>
-                <section data-markdown></section>
-                <section data-markdown></section>
-                <section data-markdown></section>
+                <section>
+                    <pre><code data-trim contenteditable>
+let promise = new Promise(function(resolve, reject) {
+  // do a thing, possibly async, then…
+
+  if (/* everything turned out fine */) {
+    resolve("Stuff worked!");
+  }
+  else {
+    reject(Error("It broke"));
+  }
+});
+                    </code></pre>
+                </section>
+
+                <section>
+                    <pre><code data-trim contenteditable>
+promise.then(function(result) {
+  console.log(result); // "Stuff worked!"
+}, function(err) {
+  console.log(err); // Error: "It broke"
+});
+                    </code></pre>
+                </section>
+
+                <section>
+                    <pre><code data-trim contenteditable>
+get('story.json').then(function(response) {
+  return JSON.parse(response);
+}).then(function(response) {
+  console.log("Yey JSON!", response);
+});
+                    </code></pre>
+                </section>
+
+                <section>
+                    <pre><code data-trim contenteditable>
+get('story.json').then(JSON.parse).then(function(response) {
+  console.log("Yey JSON!", response);
+});
+                    </code></pre>
+                </section>
+
+                <section>
+                    <pre><code data-trim contenteditable>
+Promise.all(arrayOfPromises).then(function(arrayOfResults) {
+  //...
+});
+                    </code></pre>
+                </section>
+                <section data-markdown>##generators</section>
+
+                <section data-markdown>start/stop</section>
+
+                <section>
+                    <pre><code data-trim contenteditable>
+function* idMaker(){
+  var index = 0;
+  while(index < 3)
+    yield index++;
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <pre><code data-trim contenteditable>
+function* idMaker(){
+  var index = 0;
+  while(index < 3)
+    yield index++;
+}
+
+var gen = idMaker();
+
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+console.log(gen.next().value); // undefined
+                    </code></pre>
+                </section>
+
+                <section data-markdown>#ADD PROMISES EXAMPLE!!!</section>
+
+                <section data-markdown>##classes</section>
+
+                <section>
+                    <pre><code data-trim contenteditable>
+class Cat {
+  constructor(name) {
+    this.name = name;
+  }
+
+  speak() {
+    console.log(this.name + ' makes a noise.');
+  }
+}
+
+class Lion extends Cat {
+  speak() {
+    super.speak();
+    console.log(this.name + ' roars.');
+  }
+}
+                    </code></pre>
+                </section>
+
+                <section data-markdown>#tools</section>
+
+                <section data-markdown>![nomodules](images/fry.png)</section>
+
+                <section data-markdown>![options](images/options.png)</section>
+
+                <section data-markdown>##babel</section>
+                <section data-markdown>`npm install babel -g`</section>
+                <section data-markdown>`babel -d client-dist client/*.js`</section>
+                <section data-markdown>source maps</section>
+                <section data-markdown>babel-node</section>
+
+                <section data-markdown>##traceur</section>
+
+                <section data-markdown>
+                    babel > traceur
+
+                    - more readable code
+                    - jsx support
+                    - better community support
+                </section>
+
+                <section data-markdown>##client side module system</section>
+                <section data-markdown>browserify</section>
+
+                <section data-markdown>webpack</section>
+                <section data-markdown>`webpack main.js bundle.js`</section>
+                <section>
+                    <p>basic config</p>
+                    <pre><code data-trim contenteditable>
+// webpack.config.js
+module.exports = {
+  entry: './main.js',
+  output: {
+    filename: 'bundle.js'
+  },
+  module: {
+    loaders: [
+      { test: /\.coffee$/, loader: 'coffee-loader' },
+      { test: /\.js$/, loader: 'babel-loader' }
+    ]
+  }
+};
+                    </code></pre>
+                </section>
+                <section>
+                    <p>images and css</p>
+                    <pre><code data-trim contenteditable>
+require('./bootstrap.css');
+require('./myapp.less');
+
+var img = document.createElement('img');
+img.src = require('./glyph.png');
+                    </code></pre>
+                </section>
+                <section>
+                    <p>images and css</p>
+                    <pre><code data-trim contenteditable>
+// webpack.config.js
+module.exports = {
+  // ...
+  module: {
+    loaders: [
+      { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' }, // use ! to chain loaders
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'} // inline base64 URLs for <=8k images, direct URLs for the rest
+    ]
+  }
+};
+                    </code></pre>
+                </section>
+                <section>
+                    <p>async loading</p>
+                    <pre><code data-trim contenteditable>
+if (window.location.pathname === '/feed') {
+  showLoadingState();
+  require.ensure([], function() { // this syntax is weird but it works
+    hideLoadingState();
+    require('./feed').show(); // when this function is called, the module is guaranteed to be synchronously available.
+  });
+} else if (window.location.pathname === '/profile') {
+  showLoadingState();
+  require.ensure([], function() {
+    hideLoadingState();
+    require('./profile').show();
+  });
+}
+                    </code></pre>
+                </section>
+
+                <style>img[alt=eslint] { height: auto }</style>
+                <section data-markdown>
+                    ##eslint
+                    ![eslint](images/eslint.png)
+                </section>
+                <section data-markdown>![reacteslint](images/reacteslint.png)</section>
+
+                <section data-markdown>#summary</section>
+                <section data-markdown>es2015 is cool</section>
+                <section data-markdown>community supports it</section>
+                <section data-markdown>hype</section>
+                <section data-markdown>start using es2015 right now</section>
+                <section data-markdown>
+                    @kjendrzyca
+
+                    aimforsimplicity.com
+                </section>
 			</div>
 		</div>
 
