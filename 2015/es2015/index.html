@@ -38,6 +38,11 @@
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
+        <!-- <style type="text/css">
+            .reveal pre {
+                font-size: 1em;
+            }
+        </style> -->
 	</head>
 
 	<body>
@@ -50,10 +55,14 @@
                 </section>
 
                 <section data-markdown>
+                    ![goodparts](images/goodparts.jpg)
+                </section>
+
+                <section data-markdown>
                     ##biggest js problems:
 
-                    - variables, this scoping
-                    - lack of modules system / million of different module systems
+                    - variables, **`this`** scoping
+                    - lack of module system / million of different module systems
                     - callback hell (node)
                     - type safety
                 </section>
@@ -120,7 +129,7 @@ function doingStuff() {
                 </section>
 
                 <section>
-                    <section data-markdown>##desctructuring</section>
+                    <section data-markdown>##destructuring</section>
 
                     <section>
                         <pre><code data-trim contenteditable>
@@ -174,6 +183,17 @@ function ajax ({url, success, error} = {}) {
                     <section data-markdown>##rest parameter</section>
 
                     <section>
+                        <p>es5</p>
+                        <pre><code data-trim contenteditable>
+function sortArgs() {
+    var args = Array.prototype.slice.call(arguments);
+    return args.sort();
+}
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <p>es2015</p>
                         <pre><code data-trim contenteditable>
 function someWithRest(...argum) {
   console.log(argum);
@@ -211,7 +231,7 @@ let concatenated = complicatedObjects
                         </code></pre>
                     </section>
 
-                    <section data-markdown>don't work with `call` and `apply`</section>
+                    <section data-markdown>doesn't work with `call` and `apply`</section>
                 </section>
 
                 <section>
@@ -245,8 +265,6 @@ myApp.directive('myDir', function () {
                         <pre><code data-trim contenteditable>
 let name = "Jeff", time = "today";
 `Hello ${name}, how are you ${time}?`
-
-console.log(String.raw`In ES5 "\n" is a line-feed.`)
                         </code></pre>
                     </section>
 
@@ -442,19 +460,23 @@ promise.then(function(result) {
 
                     <section>
                         <pre><code data-trim contenteditable>
-get('story.json').then(function(response) {
-  return JSON.parse(response);
-}).then(function(response) {
-  console.log("Yey JSON!", response);
-});
+get('story.json').
+  .then((response) => {
+    return JSON.parse(response);
+  })
+  .then((response) => {
+    console.log("Yey JSON!", response);
+  });
                         </code></pre>
                     </section>
 
                     <section>
                         <pre><code data-trim contenteditable>
-get('story.json').then(JSON.parse).then(function(response) {
-  console.log("Yey JSON!", response);
-});
+get('story.json')
+  .then(JSON.parse)
+  .then((response) => {
+    console.log("Yey JSON!", response);
+  });
                         </code></pre>
                     </section>
 
@@ -476,8 +498,9 @@ Promise.all(arrayOfPromises).then(function(arrayOfResults) {
                         <pre><code data-trim contenteditable>
 function* idMaker(){
   var index = 0;
-  while(index < 3)
+  while(index < 3) {
     yield index++;
+  }
 }
                         </code></pre>
                     </section>
@@ -486,8 +509,9 @@ function* idMaker(){
                         <pre><code data-trim contenteditable>
 function* idMaker(){
   var index = 0;
-  while(index < 3)
+  while(index < 3) {
     yield index++;
+  }
 }
 
 var gen = idMaker();
@@ -499,7 +523,18 @@ console.log(gen.next().value); // undefined
                         </code></pre>
                     </section>
 
-                    <section data-markdown>#ADD PROMISES EXAMPLE!!!</section>
+                    <section>
+                        <pre><code data-trim contenteditable>
+runGenerator(function *main(){
+    var result1 = yield request( "http://some.url.1" );
+    var data = JSON.parse( result1 );
+
+    var result2 = yield request( "http://some.url.2?id=" + data.id );
+    var resp = JSON.parse( result2 );
+    console.log( "The value you asked for: " + resp.value );
+} );
+                        </code></pre>
+                    </section>
                 </section>
 
                 <section>
@@ -525,13 +560,13 @@ class Lion extends Cat {
 }
                         </code></pre>
                     </section>
+                    <section data-markdown>bad part - people stay in **`class`**ical model</section>
                 </section>
 
                 <section>
                     <section data-markdown>#tools</section>
 
                     <section data-markdown>![nomodules](images/fry.png)</section>
-
                     <section data-markdown>![options](images/options.png)</section>
 
                     <section data-markdown>##babel</section>
@@ -545,9 +580,9 @@ class Lion extends Cat {
                     <section data-markdown>
                         babel > traceur
 
-                        - more readable code
-                        - jsx support
                         - better community support
+                        - jsx support
+                        - more readable code
                     </section>
 
                     <section data-markdown>##client side module system</section>
@@ -591,9 +626,11 @@ module.exports = {
   // ...
   module: {
     loaders: [
-      { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' }, // use ! to chain loaders
+      // use ! to chain loaders
+      { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
-      {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'} // inline base64 URLs for <=8k images, direct URLs for the rest
+      // inline base64 URLs for <=8k images, direct URLs for the rest
+      { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}
     ]
   }
 };
